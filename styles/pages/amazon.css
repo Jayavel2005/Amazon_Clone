@@ -154,12 +154,3 @@
   padding: 8px;
   border-radius: 50px;
 }
-.added-to-cart-visible{
-  opacity: 1;
-  color: rgb(6, 125, 98);
-  font-size: 16px;
-
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
