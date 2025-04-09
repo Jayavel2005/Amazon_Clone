@@ -1,43 +1,3 @@
-const products = [
-  {
-    image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
-    name: 'Black and Gray Athletic Cotton Socks - 6 Pairs',
-    rating: {
-      stars: 4.5,
-      count: 87,
-    },
-    price: 100
-  },
-  {
-    image: 'images/products/intermediate-composite-basketball.jpg',
-    name: 'Intermediate Size Basketball',
-    rating: {
-      stars: 4,
-      count: 127,
-    },
-    price: 1095,
-  },
-  {
-    image: 'images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg',
-    name: 'Adults Plain Cotton T-Shirt - 2 Pack',
-    rating: {
-      stars: 4.5,
-      count: 56,
-    },
-    price: 199,
-  }
-  ,
-  {
-    image: 'images/products/black-2-slot-toaster.jpg',
-    name: '2 Slot Toaster - Black',
-    rating: {
-      stars: 5,
-      count: 2197,
-    },
-    price: 1999,
-  }
-];
-
 
 
 
@@ -63,7 +23,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-price">
-            &#8377;${(product.price).toFixed(2)}
+            &#8377;${(product.priceCents).toFixed(2)}
           </div>
 
           <div class="product-quantity-container">
@@ -88,7 +48,8 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-name="${product.name}" data-product-image="${product.image}" data-product-price="${product.price}">
+          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-name="${product.name}" data-product-image="${product.image}" data-product-price="${product.price}"
+          data-product-id="${product.id}">
             Add to Cart
           </button>
         </div>`;
@@ -103,11 +64,11 @@ document.querySelector('.js-products-grid').innerHTML = productHtml;
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
 
-    const productName = button.dataset.productName;
+    const productId = button.dataset.productId;
 
     let matchingItem;
     cart.forEach((item) => {
-      if (item.productName === productName) {
+      if (item.productId === productId) {
         matchingItem = item;
       }
     })
@@ -117,13 +78,22 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     } else {
       cart.push(
         {
-          productName: productName,
+          productId: productId,
           quantity: 1,
         }
       )
     }
 
-    console.log(cart);
+    let cartQuantity = 0;
+
+    cart.forEach((item) => {
+      cartQuantity += item.quantity;
+    });
+
+
+    document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+
+
 
 
 
