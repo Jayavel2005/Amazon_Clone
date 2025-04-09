@@ -70,7 +70,8 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
 
     const productId = button.dataset.productId;
-
+    
+    
     addToCart(productId);
     document.querySelector(`.js-added-to-cart-${productId}`).classList.add('added')
     setTimeout(() => {
